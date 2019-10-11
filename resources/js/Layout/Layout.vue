@@ -1,7 +1,9 @@
 <template>
   <main class="flex flex-col min-h-screen" role="main">
     <nav class="p-4 flex bg-menu-primary text-on-menu-primary">
-      <div class="flex-1">Application</div>
+      <div class="flex-1">
+        <inertia-link :href="$path('index')">Application</inertia-link>
+      </div>
       <button
         @click="toggleTheme"
         class="text-on-menu-primary hover:text-on-menu-primary-medium-emphasis"

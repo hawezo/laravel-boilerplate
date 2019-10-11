@@ -19,7 +19,8 @@ require('laravel-mix-purgecss');
 mix
   .alias({
     '@': './resources/js',
-    '~': './'
+    '~': './',
+    'ziggy': './vendor/tightenco/ziggy/dist/js/route.js'
   })
   .ts('resources/js/app.ts', 'public/js')
   .postCss('resources/css/app.css', 'public/css')

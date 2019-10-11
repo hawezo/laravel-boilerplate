@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["resources/js/*"],
-      "~/*": ["./"]
+      "~/*": ["./"],
+      "ziggy": ["./vendor/tightenco/ziggy/dist/js/route.js"]
     }
   },
   "exclude": ["node_modules"]
