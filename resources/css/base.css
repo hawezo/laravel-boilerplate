@@ -1,0 +1,14 @@
+/*
+ |--------------------------------------------------------------------------
+ | Base styling
+ |--------------------------------------------------------------------------
+ |
+ | You can apply default styles to your application in this file.
+ | By default, this boilerplate configures the `body` element to have
+ | a minimum height corresponding to the whole viewport.
+ |
+ */
+
+body {
+    @apply min-h-screen;
+}

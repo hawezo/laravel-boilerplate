@@ -1,0 +1,39 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "npm run development -- --watch",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "@fullhuman/postcss-purgecss": "^1.3.0",
+        "axios": "^0.19",
+        "cross-env": "^5.1",
+        "laravel-mix": "^4.0.7",
+        "laravel-mix-alias": "^1.0.2",
+        "laravel-mix-postcss-config": "^1.0.2",
+        "laravel-mix-purgecss": "^4.2.0",
+        "lodash": "^4.17.13",
+        "postcss-calc": "^7.0.1",
+        "postcss-custom-properties": "^9.0.2",
+        "postcss-import": "^12.0.1",
+        "postcss-nested": "^4.1.2",
+        "resolve-url-loader": "^2.3.1",
+        "tailwindcss": "^1.1.2",
+        "tailwindcss-elevation": "^0.3.3",
+        "tailwindcss-theming": "^0.1.4",
+        "ts-loader": "^6.2.0",
+        "typescript": "^3.6.4",
+        "vue": "^2.6.10",
+        "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "@inertiajs/inertia": "^0.1.6",
+        "@inertiajs/inertia-vue": "^0.1.2",
+        "postcss-url": "^8.0.0"
+    }
+}

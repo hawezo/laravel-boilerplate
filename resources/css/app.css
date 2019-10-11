@@ -1,0 +1,21 @@
+/*
+ |--------------------------------------------------------------------------
+ | CSS entry point
+ |--------------------------------------------------------------------------
+ |
+ | This boilerplate provide a default CSS configuration which
+ | includes Tailwind CSS and base styling. You can extend it however
+ | you want thanks to the PostCSS import plugin.
+ |
+ */
+
+/* Tailwind */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+
+/* Basic styling */
+@import "base";
+@import "components";
+
+/* Tailwind utilities, imported last to let them override anything you want */
+@import "tailwindcss/utilities";
