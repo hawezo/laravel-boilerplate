@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import { InertiaApp } from '@inertiajs/inertia-vue';
-import { Router } from '@/Script/router';
+import { WindowRouter } from '@/Script/router';
 
 // @ts-ignore
 Vue.use(InertiaApp);
-Vue.mixin(Router);
+Vue.mixin(WindowRouter);
 
 const app: any = document.getElementById('app');
 

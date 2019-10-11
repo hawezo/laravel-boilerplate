@@ -1,5 +1,4 @@
 import route from 'ziggy';
-import { Ziggy } from './router';
 import { Router as IRouter, Ziggy as IZiggy } from './Ziggy';
 
 /**
@@ -15,9 +14,16 @@ function router(name: string, params: any, absolute: boolean, ziggy: IZiggy) {
   return result;
 }
 
-export const Router = {
-  methods: {
-    $route: (name: string, params: any, absolute: boolean) => router(name, params, absolute, Ziggy),
-    $path: (name: string, params: any, absolute: boolean) => router(name, params, absolute, Ziggy).path(),
-  },
-};
+export function GetRouter(useWindow: boolean) {
+  const { Ziggy } = useWindow ? window : require('./router.js');
+
+  return {
+    methods: {
+      $route: (name: string, params: any, absolute: boolean) => router(name, params, absolute, Ziggy),
+      $path: (name: string, params: any, absolute: boolean) => router(name, params, absolute, Ziggy).path(),
+    },
+  }
+}
+
+export const Router = GetRouter(false);
+export const WindowRouter = GetRouter(true);
