@@ -3,7 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
+use Inertia\Inertia;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpFoundation\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +48,25 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        $response = parent::render($request, $exception);
+
+        // You can assign custom codes for every kind of exception you
+        // want and convert this $exception into $yourException, so
+        // you can provide more details to the view in a controlled way.
+        // Your converter can map some exceptions to custom error codes,
+        // and let other exceptions be 500 errors with a generic error code.
+
+        if (in_array($response->status(), [
+            Response::HTTP_INTERNAL_SERVER_ERROR,
+            Response::HTTP_SERVICE_UNAVAILABLE,
+            Response::HTTP_NOT_FOUND,
+            Response::HTTP_FORBIDDEN
+        ])) {
+            return Inertia::render('Error', ['code' => $response->status()])
+                ->toResponse($request)
+                ->setStatusCode($response->status());
+        }
+
+        return $response;
     }
 }
