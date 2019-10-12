@@ -27,9 +27,6 @@ The following PostCSS plugins are included:
 - [Url](https://github.com/postcss/postcss-url) — To rebase the `url` property
 - [Autoprefixer](https://github.com/postcss/autoprefixer) — To add vendor prefixes to CSS rules
 
-
----
-
 ## Lang
 
 This boilerplate uses [laravel-localization-loader](https://github.com/rmariuzzo/laravel-localization-loader) and [Lang.js](https://github.com/rmariuzzo/Lang.js) together to import your localization into Vue. More specifically, this boilerplate *automatically* imports all localization files, unless you [ignore](resources/js/script/lang/index.ts) them. 
@@ -91,4 +88,20 @@ export default {
     }
   }
 }
+```
+
+## Error Handling
+
+With Inertia, you have to [replace the behavior](https://inertiajs.com/error-handling) of your [default error handler](app/Exceptions/Handler.php) in order display error pages. This boilerplate adds an [error page](resources/js/View/Error.vue) and handles default errors with localization. 
+
+For a more advanced error handling, you can make an exception converter that would convert any `\Exception` into some `App\Exceptions\AppException` with a `$code` property, for example. You could map most common exceptions to a code, and let this code be sent in your views, so you can provide a documentation for your users. 
+
+```php
+// App\Exceptions\AppException
+
+protected $map = [
+    NotFoundHttpException::class => 0x03,
+    \LogicException::class       => 0x02,
+    \Exception::class            => 0x01,
+];
 ```
