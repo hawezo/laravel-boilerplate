@@ -45,3 +45,35 @@ So for the router to work, you need to extract the routes every time you change 
 If you wish to use the `@routes` directive instead, you need to place it in your `app.blade.php` (just before `</head>` for instance), and to replace `import { Router } from '@/Script/router'` by `import { WindowRouter } from '@/Script/router'` in the entry file ([`app.ts`](resources/js/app.ts)). 
 
 **You will still need a `router.js` file in the `router` directory**, even if it's empty, because Webpack will cry if there is no such file.
+
+## Metadata
+
+I added a helper that allows to easily set a page title from the view. You just have to set a `title` property to your component. It can be a string or a callback. The Vue instance is passed as the first parameter of the callback, so you can use an arrow function to contextually set the title of your page:
+
+```javascript
+export default {
+  title: ({ user }) => `Welcome, ${user.name}`,
+  data() {
+    return {
+      user: {
+        name: 'Jon Doe'
+      }
+    }
+  }
+}
+```
+
+If you are not familiar with destructuration, this is the equivalent of:
+
+```javascript
+export default {
+  title: (vm) => `Welcome, ${vm.user.name}`,
+  data() {
+    return {
+      user: {
+        name: 'Jon Doe'
+      }
+    }
+  }
+}
+```
