@@ -30,6 +30,19 @@ The following PostCSS plugins are included:
 
 ---
 
+## Lang
+
+This boilerplate uses [laravel-localization-loader](https://github.com/rmariuzzo/laravel-localization-loader) and [Lang.js](https://github.com/rmariuzzo/Lang.js) together to import your localization into Vue. More specifically, this boilerplate *automatically* imports all localization files, unless you [ignore](resources/js/script/lang/index.ts) them. 
+
+You can use the following helpers in your components: 
+
+```typescript
+$_: (key: string, replacements?: Replacements, locale?: string) => string,
+$lang: () => Lang
+```
+
+An example is available in the [Index](resources/js/View/Index.vue) page.
+
 ## Router
 
 This boilerplate uses [Ziggy](https://github.com/tightenco/ziggy). The TypeScript entry point registers the router and adds it into Vue, so you can use `$router()` and `$path()` methods in any component. 
@@ -38,6 +51,8 @@ This boilerplate uses [Ziggy](https://github.com/tightenco/ziggy). The TypeScrip
 $route: (name: string, params: any, absolute: boolean) => Router;
 $path: (name: string, params: any, absolute: boolean) => string;
 ```
+
+An example is available in the [layout](resources/js/Layout/Layout.vue).
 
 I decided not to include the routes in the Blade templates as they most likely don't change often, and instead export them into the scripts thanks to Ziggy's `artisan` command. 
 So for the router to work, you need to extract the routes every time you change them with `composer update:routes` or `php artisan ziggy:generate "resources/js/Script/router/router.js"`. 

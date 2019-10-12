@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-1 flex-col items-center justify-center text-lg">
-    <h1 class="font-bold">Welcome</h1>
-    <p>Hello <span class="font-semibold">{{ user.name }}</span>, welcome to your first Inertia app!</p>
+    <h1 class="font-bold">{{ $_('messages.welcome.title') }}</h1>
+    <p v-html="$_('messages.welcome.text', { user: `<span class='font-semibold'>${user.name}</span>` })" />
   </div>
 </template>
 

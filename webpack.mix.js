@@ -17,12 +17,34 @@ require('laravel-mix-purgecss');
  */
 
 mix
+
+  // Adds aliases for cleaner import
   .alias({
     '@': './resources/js',
     '~': './',
-    'ziggy': './vendor/tightenco/ziggy/dist/js/route.js'
+    ziggy: './vendor/tightenco/ziggy/dist/js/route.js',
   })
+
+  // Adds webpack rules
+  .webpackConfig({
+    module: {
+      rules: [
+
+        // Registers the translator loader
+        {
+          test: /resources[\\\/]lang.+\.(php|json)$/,
+          loader: 'laravel-localization-loader',
+        },
+      ],
+    },
+  })
+
+  // Defines application entry file
   .ts('resources/js/app.ts', 'public/js')
+
+  // Registers CSS and PostCSS
   .postCss('resources/css/app.css', 'public/css')
   .postCssConfig()
+
+  // Registers PurgeCSS
   .purgeCss();
