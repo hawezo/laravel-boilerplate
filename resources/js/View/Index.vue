@@ -11,6 +11,7 @@ import Layout from '@/Layout/Layout';
 
 export default {
   layout: (h, page) => h(Layout, [page]),
+  title: ({ user }) => `Welcome, ${user.name}`,
   data() {
     return {
       user: {
