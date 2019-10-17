@@ -15,7 +15,7 @@ To render a page, use `Inertia::view($component)`. You can find more information
 
 The following TailwindCSS plugins are included:
 - [Elevation](https://github.com/jonaskay/tailwindcss-elevation) — To provide better shadow utilities
-- [Theming](https://github.com/hawezo/tailwindcss-theming) — To provide powerful client-side theming
+- [Theming](https://github.com/hawezo/tailwindcss-theming) — To provide powerful client-side theming (more info)[#theming]
 
 ## PostCSS
 
@@ -25,7 +25,6 @@ The following PostCSS plugins are included:
 - [Import](https://github.com/postcss/postcss-import) — To allow CSS importation
 - [Nested](https://github.com/postcss/postcss-nested) — To allow nesting of CSS rules
 - [Url](https://github.com/postcss/postcss-url) — To rebase the `url` property
-- [Autoprefixer](https://github.com/postcss/autoprefixer) — To add vendor prefixes to CSS rules
 
 ## Lang
 
@@ -105,3 +104,9 @@ protected $map = [
     \Exception::class            => 0x01,
 ];
 ```
+
+# Theming
+
+I'm using my [Tailwind theming plugin](hawezo/tailwindcss-theming) on every project now, so I fully configured it for this project. 
+
+The configuration is a really good start for every project. It's all in the [`theme.config.js`](theme.config.js) file, and this file is included just like a plugin in [`tailwind.config.js`](tailwind.config.js).
