@@ -7,7 +7,7 @@
       <button
         @click="rotateThemes"
         class="text-on-navigation hover:text-on-navigation-hover"
-      >Toggle theme</button>
+      >Next theme</button>
     </nav>
     <section class="flex flex-col flex-1 bg-background text-on-background transition-all">
       <slot />

@@ -9,7 +9,7 @@ To render a page, use `Inertia::view($component)`. You can find more information
 
 ## TypeScript
 
-[TypeScript](http://www.typescriptlang.org/) is installed and configured, but the Vue components do not use it. I intend to use TypeScript only on scripts or modules, like this [theme toggle](resources/js/Script/toggleTheme.ts). You can still use TypeScript on components by following the [Vue documentation](https://vuejs.org/v2/guide/typescript.html).
+[TypeScript](http://www.typescriptlang.org/) is installed and configured, but the Vue components do not use it. I intend to use TypeScript only on scripts or modules, like this [theme rotate scripts](resources/js/Script/rotateThemes.ts). You can still use TypeScript on components by following the [Vue documentation](https://vuejs.org/v2/guide/typescript.html).
 
 ## TailwindCSS
 
