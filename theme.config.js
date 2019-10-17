@@ -53,9 +53,9 @@ const mainTheme = new Theme()
 
 const darkTheme = new Theme()
   .name('dark')
-  // .schemeDefault()
-  // .dark()
-  // .keep()
+  // .schemeDefault() // Makes this theme the default base on user scheme preference (OS/browser-wide), combine with .dark()
+  .keep() // Let the theme be accessible for the current strategy
+  .dark() // Set the theme under the `prefers-color-scheme` rule
   .colors({
     // We didn't include `transparent`, it will be inherit since it's the same.
     // Navigation
@@ -91,7 +91,7 @@ const darkTheme = new Theme()
 
 module.exports = new ThemeBuilder()
   // .asClass()
-  .asPrefixedClass('theme')
-  // .asDataThemeAttribute()
+  // .asPrefixedClass('theme')
+  .asDataThemeAttribute()
   .default(mainTheme)
   .theme(darkTheme);
