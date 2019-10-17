@@ -108,6 +108,6 @@ protected $map = [
 
 # Theming
 
-I'm using my [Tailwind theming plugin](hawezo/tailwindcss-theming) on every project now, so I fully configured it for this project. 
+I'm using my [Tailwind theming plugin](https://github.com/hawezo/tailwindcss-theming) on every project now, so I fully configured it for this project. 
 
 The configuration is a really good start for every project. It's all in the [`theme.config.js`](theme.config.js) file, and this file is included just like a plugin in [`tailwind.config.js`](tailwind.config.js).
