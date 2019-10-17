@@ -15,7 +15,7 @@ To render a page, use `Inertia::view($component)`. You can find more information
 
 The following TailwindCSS plugins are included:
 - [Elevation](https://github.com/jonaskay/tailwindcss-elevation) — To provide better shadow utilities
-- [Theming](https://github.com/hawezo/tailwindcss-theming) — To provide powerful client-side theming (more info)[#theming]
+- [Theming](https://github.com/hawezo/tailwindcss-theming) — To provide powerful client-side theming [more info](#theming)
 - [Transitions](https://github.com/benface/tailwindcss-transitions) — To provide transition support
 
 ## PostCSS
