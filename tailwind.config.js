@@ -10,23 +10,13 @@
  |
  */
 
-const theming = require('./theme.config').plugin;
-const tailwind = require('tailwindcss/defaultTheme')
+const tailwind = require('tailwindcss/defaultTheme');
 
 module.exports = {
   theme: {
-    ...theming.getTheme(),
     fontFamily: {
-      title: [
-        'Raleway',
-        'Open Sans',
-        'Roboto',
-        ...tailwind.fontFamily.sans
-      ],
-      sans: [
-        'Roboto',
-        ...tailwind.fontFamily.sans
-      ],
+      title: ['Raleway', 'Open Sans', 'Roboto', ...tailwind.fontFamily.sans],
+      sans: ['Roboto', ...tailwind.fontFamily.sans],
       mono: ['"Roboto Mono"', ...tailwind.fontFamily.mono],
       condensed: ['"Roboto Condensed"', ...tailwind.fontFamily.sans],
     },
@@ -35,7 +25,8 @@ module.exports = {
     display: ['responsive', 'group-hover', 'hover'],
   },
   plugins: [
-    theming.getTailwind(),
+    require('./theme.config'), 
     require('tailwindcss-elevation')(['responsive', 'hover', 'active', 'focus']),
+    require('tailwindcss-transitions')()
   ],
 };

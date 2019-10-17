@@ -1,6 +1,5 @@
 const mix = require('laravel-mix');
-require('laravel-mix-postcss-config');
-require('laravel-mix-alias');
+const path = require('path');
 require('laravel-mix-purgecss');
 
 /*
@@ -18,19 +17,37 @@ require('laravel-mix-purgecss');
 
 mix
 
-  // Adds aliases for cleaner import
-  .alias({
-    '@': './resources/js',
-    '~': './',
-    ziggy: './vendor/tightenco/ziggy/dist/js/route.js',
-  })
+  // Application entry file
+  .ts('resources/js/app.ts', 'public/js')
+
+  // Registers CSS and PostCSS
+  .postCss('resources/css/app.css', 'public/css', [
+    require('postcss-import'),
+    require('postcss-calc'),
+    require('postcss-url'),
+    require('tailwindcss'),
+    require('postcss-nested'),
+    require('postcss-custom-properties'),
+  ])
 
   // Adds webpack rules
   .webpackConfig({
+    // Code splitting options
+    output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
+
+    // Adds aliases for cleaner import
+    resolve: {
+      alias: {
+        vue$: 'vue/dist/vue.runtime.esm.js',
+        '@': path.resolve('./resources/js'),
+        '~': path.resolve('./'),
+        'ziggy': path.resolve('./vendor/tightenco/ziggy/dist/js/route.js'),
+      },
+    },
+
+    // Translator loader
     module: {
       rules: [
-
-        // Registers the translator loader
         {
           test: /resources[\\\/]lang.+\.(php|json)$/,
           loader: 'laravel-localization-loader',
@@ -39,12 +56,14 @@ mix
     },
   })
 
-  // Defines application entry file
-  .ts('resources/js/app.ts', 'public/js')
-
-  // Registers CSS and PostCSS
-  .postCss('resources/css/app.css', 'public/css')
-  .postCssConfig()
+  // Adds babel plugins
+  .babelConfig({
+    plugins: ['@babel/plugin-syntax-dynamic-import'],
+  })
 
   // Registers PurgeCSS
-  .purgeCss();
+  .purgeCss()
+
+  // Enables versioning
+  .version()
+  .sourceMaps();

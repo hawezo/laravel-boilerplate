@@ -12,86 +12,86 @@
  |
  */
 
-const { ThemingPlugin } = require('tailwindcss-theming');
+const { ThemeBuilder, Theme } = require('tailwindcss-theming');
 
-const variants = [
-  { name: 'default', value: 1 },
-  { name: 'high-emphasis', value: 0.87 },
-  { name: 'medium-emphasis', value: 0.6 },
-  { name: 'inactive', value: 0.6 },
-  { name: 'disabled', value: 0.38 },
-  { name: 'muted', value: 0.425 },
-  { name: 'selection', value: 0.25 },
-  { name: 'slightly-visible', value: 0.1 },
-];
+const mainTheme = new Theme()
+  .default()
+  .colors({
+    // A transparent color, which alpha value will be detected.
+    'transparent': 'transparent',
 
-const palette = [
-  { name: 'transparent', value: 'transparent', opacityVariants: [], outputFormat: 'text' },
+    // Navigation
+    'navigation': '#3f485d',
+    'on-navigation': '#d3d4d6',
 
-  // menu colors
-  { name: 'menu-primary', value: '#3c4253', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'menu-secondary', value: '#303030', opacityVariants: variants, outputFormat: 'rgb' },
+    // Brand colors
+    'brand':'#2196f3',
+    'brand-variant':'#1565c0',
+    'on-brand':'#ffffff',
+    'on-brand-variant':'#ffffff',
+    
+    // Background colors, but not limited to `bg` utilities.
+    'background':'#f4f4f4',
+    'surface':'#ffffff',
+    'on-background':'#585851',
+    'on-surface':'#3c3c3c',
+    
+    // Event colors.
+    'error':'#b00020',
+    'on-error':'#ffffff',
+    'success':'#3ab577',
+    'on-success':'#ffffff',
+    'warning':'#e65100',
+    'on-warning':'#ffffff',
+    'info':'#2481ea',
+    'on-info':'#ffffff',
+  })
 
-  { name: 'on-menu-primary', value: '#9aa2b6', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'on-menu-secondary', value: '#9aa2b6', opacityVariants: variants, outputFormat: 'rgb' },
+  // Color variants
+  .colorVariant('hover', 'white', ['on-navigation'])
+;
 
-  // mains colors
-  { name: 'black', value: '#000000', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'primary', value: '#2196f3', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'primary-variant', value: '#1565c0', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'secondary', value: '#039be5', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'secondary-variant', value: '#0288d1', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'background', value: '#f4f4f4', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'surface', value: '#ffffff', opacityVariants: variants, outputFormat: 'rgb' },
+const darkTheme = new Theme()
+  .name('dark')
+  // .schemeDefault()
+  // .dark()
+  // .keep()
+  .colors({
+    // We didn't include `transparent`, it will be inherit since it's the same.
+    // Navigation
+    'navigation': '#282828',
+    'on-navigation': '#c1c1c1',
 
-  // infotypes colors
-  { name: 'error', value: '#b00020', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'success', value: '#3ab577', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'warning', value: '#e65100', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'info', value: '#2481ea', opacityVariants: variants, outputFormat: 'rgb' },
+    // Brand colors
+    'brand':'#2196f3',
+    'brand-variant':'#1565c0',
+    'on-brand':'#ffffff',
+    'on-brand-variant':'#ffffff',
+    
+    // Background colors, but not limited to `bg` utilities.
+    'background':'#1f1f1f',
+    'surface':'#282828',
+    'on-background':'#ffffff',
+    'on-surface':'#ffffff',
+    
+    // Event colors.
+    'error':'#b00020',
+    'on-error':'#ffffff',
+    'success':'#3ab577',
+    'on-success':'#ffffff',
+    'warning':'#e65100',
+    'on-warning':'#ffffff',
+    'info':'#2481ea',
+    'on-info':'#ffffff',
+  })
 
-  // on colors
-  { name: 'on-primary', value: '#ffffff', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'on-secondary', value: '#ffffff', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'on-background', value: '#585851', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'on-surface', value: '#3c3c3c', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'on-error', value: '#ffffff', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'on-success', value: '#ffffff', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'on-warning', value: '#ffffff', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'on-info', value: '#ffffff', opacityVariants: variants, outputFormat: 'rgb' },
-];
+  // Color variants
+  // .colorVariant('hover', 'white', 'on-navigation') // This could be omitted, since it's inherited.
+;
 
-const lightNav = [
-  { name: 'menu-primary', value: '#ffffff', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'menu-secondary', value: '#e1e1e1', opacityVariants: variants, outputFormat: 'rgb' },
-
-  { name: 'on-menu-primary', value: '#000', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'on-menu-secondary', value: '#000', opacityVariants: variants, outputFormat: 'rgb' },
-]
-
-const primaryNav = [
-  { name: 'menu-primary', value: '#2196f3', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'menu-secondary', value: '#1565c0', opacityVariants: variants, outputFormat: 'rgb' },
-
-  { name: 'on-menu-primary', value: '#fff', opacityVariants: variants, outputFormat: 'rgb' },
-  { name: 'on-menu-secondary', value: '#fff', opacityVariants: variants, outputFormat: 'rgb' },
-]
-
-const themes = {
-  default: { type: 'light', colors: palette },
-  'light-navigation': { type: 'light', colors: lightNav },
-  'primary-navigation': { type: 'light', colors: primaryNav },
-};
-
-const config = {
-  themeTypeKey: 'color-scheme',
-  colorVariablePrefix: 'color',
-  useVariants: true,
-  outputThemePrefix: 'theme'
-};
-
-module.exports = {
-  themes,
-  config,
-  plugin: new ThemingPlugin(themes, config)
-};
+module.exports = new ThemeBuilder()
+  // .asClass()
+  .asPrefixedClass('theme')
+  // .asDataThemeAttribute()
+  .default(mainTheme)
+  .theme(darkTheme);
