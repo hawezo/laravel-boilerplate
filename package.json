@@ -16,8 +16,6 @@
         "cross-env": "^5.1",
         "laravel-localization-loader": "^1.0.5",
         "laravel-mix": "^4.0.7",
-        "laravel-mix-alias": "^1.0.2",
-        "laravel-mix-postcss-config": "^1.0.2",
         "laravel-mix-purgecss": "^4.2.0",
         "lodash": "^4.17.13",
         "postcss-calc": "^7.0.1",
@@ -25,18 +23,20 @@
         "postcss-import": "^12.0.1",
         "postcss-nested": "^4.1.2",
         "resolve-url-loader": "^2.3.1",
-        "tailwindcss": "^1.1.2",
+        "tailwindcss": "^1.2.0-canary.0",
         "tailwindcss-elevation": "^0.3.3",
-        "tailwindcss-theming": "^0.1.4",
+        "tailwindcss-theming": "^1.0.0-beta-1",
         "ts-loader": "^6.2.0",
         "typescript": "^3.6.4",
         "vue": "^2.6.10",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
         "@inertiajs/inertia": "^0.1.6",
         "@inertiajs/inertia-vue": "^0.1.2",
         "lang.js": "^1.1.14",
-        "postcss-url": "^8.0.0"
+        "postcss-url": "^8.0.0",
+        "tailwindcss-transitions": "^2.1.0"
     }
 }

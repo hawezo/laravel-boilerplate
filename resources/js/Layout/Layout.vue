@@ -1,22 +1,22 @@
 <template>
   <main class="flex flex-col min-h-screen" role="main">
-    <nav class="p-4 flex bg-menu-primary text-on-menu-primary">
+    <nav class="p-4 flex bg-navigation text-on-navigation shadow-md z-10 transition-all">
       <div class="flex-1">
         <inertia-link :href="$path('index')">Application</inertia-link>
       </div>
       <button
-        @click="toggleTheme"
-        class="text-on-menu-primary hover:text-on-menu-primary-medium-emphasis"
+        @click="rotateThemes"
+        class="text-on-navigation hover:text-on-navigation-hover"
       >Toggle theme</button>
     </nav>
-    <section class="flex flex-col flex-1 bg-background text-on-background">
+    <section class="flex flex-col flex-1 bg-background text-on-background transition-all">
       <slot />
     </section>
   </main>
 </template>
 
 <script>
-import toggleTheme from '@/Script/toggleTheme';
+import rotateThemes from '@/Script/rotateThemes';
 
 export default {
   data() {
@@ -26,7 +26,7 @@ export default {
   },
 
   methods: {
-    toggleTheme
+    rotateThemes
   }
 };
 </script>
