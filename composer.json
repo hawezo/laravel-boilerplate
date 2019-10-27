@@ -1,4 +1,6 @@
 {
+  "name": "hawezo/laravel-boilerplate",
+  "version": "0.0.1",
   "type": "application",
   "description": "A Laravel application with Vue, Inertia and Tailwind.",
   "keywords": ["vue", "inertia", "tailwind"],
@@ -63,6 +65,9 @@
     "update:routes": "php artisan ziggy:generate \"resources/js/Script/router/router.js\"",
     "pre-install-cmd": "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
     "post-create-project-cmd": "@php artisan key:generate --ansi",
-    "post-autoload-dump": ["Illuminate\\Foundation\\ComposerScripts::postAutoloadDump", "@php artisan package:discover --ansi"]
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
+    ]
   }
 }

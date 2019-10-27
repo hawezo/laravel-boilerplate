@@ -10,7 +10,7 @@ import v from 'voca';
 import rotateTheme from '@/Script/rotateThemes';
 
 // Default layout
-const fallback = 'drawer';
+const fallback = 'default';
 
 // Available
 const layouts = {

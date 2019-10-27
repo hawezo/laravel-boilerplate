@@ -13,7 +13,7 @@ import { Themes } from '@/Script/theme/Theme';
 
 export default {
   layout: Layout,
-  layoutName: 'drawer',
+  layoutName: 'default',
   title: 'admin.dashboard',
   components: {
     WorkInProgress,

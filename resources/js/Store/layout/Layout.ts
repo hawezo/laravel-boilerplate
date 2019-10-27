@@ -1,4 +1,4 @@
 export enum Layout {
-  Drawer = 'drawer',
+  Default = 'default',
   Fullscreen = 'fullscreen',
 }
