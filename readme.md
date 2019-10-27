@@ -2,6 +2,29 @@
 
 This boilerplate is a good starter for a Laravel application using **Vue**, **Inertia**, **TailwindCSS** and **TypeScript**. It has authentification and password confirmation, and examples of dashboard and admin dashboard.
 
+# Installation
+
+Clone the repository:
+
+```console
+$ git clone https://github.com/hawezo:laravel-boilerplate
+$ cd laravel-boilerplate
+```
+
+Install dependencies:
+
+```console
+$ composer install
+```
+
+Install application:
+
+```console
+$ php artisan app:install
+```
+
+You can also update with `php artisan app:update`.
+
 ## Inertia
 
 [Inertia](https://inertiajs.com/) is installed and configured. [inertia-vue](https://github.com/inertiajs/inertia-vue) and the [Laravel adapter](https://github.com/inertiajs/inertia-laravel) are installed. 
