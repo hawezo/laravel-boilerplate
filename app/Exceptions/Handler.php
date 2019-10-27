@@ -3,8 +3,8 @@
 namespace App\Exceptions;
 
 use Exception;
-use Inertia\Inertia;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
 
 class Handler extends ExceptionHandler
@@ -15,7 +15,6 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
     ];
 
     /**
@@ -31,8 +30,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
-     * @return void
+     * @param \Exception $exception
      */
     public function report(Exception $exception)
     {
@@ -42,8 +40,9 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception               $exception
+     *
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
@@ -60,9 +59,9 @@ class Handler extends ExceptionHandler
             Response::HTTP_INTERNAL_SERVER_ERROR,
             Response::HTTP_SERVICE_UNAVAILABLE,
             Response::HTTP_NOT_FOUND,
-            Response::HTTP_FORBIDDEN
+            Response::HTTP_FORBIDDEN,
         ])) {
-            return Inertia::render('Error', ['code' => $response->status()])
+            return Inertia::render('Security/Error', ['code' => $response->status()])
                 ->toResponse($request)
                 ->setStatusCode($response->status());
         }

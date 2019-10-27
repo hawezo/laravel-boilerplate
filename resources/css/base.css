@@ -9,6 +9,24 @@
  |
  */
 
-body {
-    @apply min-h-screen;
+::selection {
+  @apply bg-brand-muted text-on-brand cursor-text;
+}
+
+:root {
+  --border: 0.2;
+  --border-disabled: 0.2;
+  --border-hover: 0.4;
+  --border-active: 0.9;
+
+  --overlay: 255, 255, 255;
+  --overlay-hover: 0.11;
+  --overlay-drag: 0.125;
+  --overlay-activated: 0.13;
+  --overlay-focus: 0.2;
+  --overlay-pressed: 0.175;
+  --overlay-selected: 0.09;
+
+  --header-height: 60px;
+  --progress-height: 2px;
 }

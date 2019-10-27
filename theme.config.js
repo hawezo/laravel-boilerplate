@@ -13,16 +13,20 @@
  */
 
 const { ThemeBuilder, Theme } = require('tailwindcss-theming');
+const _ = require('lodash');
 
-const mainTheme = new Theme()
+const lightTheme = new Theme()
+  .name('light')
   .default()
+  .assignable()
   .colors({
     // A transparent color, which alpha value will be detected.
     'transparent': 'transparent',
 
     // Navigation
-    'navigation': '#3f485d',
-    'on-navigation': '#d3d4d6',
+    'navigation-primary': '#3c4253',
+    'navigation-secondary': '#303030',
+    'on-navigation': '#9aa2b6',
 
     // Brand colors
     'brand':'#2196f3',
@@ -49,18 +53,28 @@ const mainTheme = new Theme()
 
   // Color variants
   .colorVariant('hover', 'white', ['on-navigation'])
+
+  // Material variants
+  .opacityVariant('high-emphasis', .87)
+  .opacityVariant('medium-emphasis', .60)
+  .opacityVariant('disabled', .38)
+  .opacityVariant('helper-emphasized', .87)
+  .opacityVariant('helper', .6)
+  .opacityVariant('inactive', .6)
+
+  // Arbitrary variants
+  .opacityVariant('muted', .38)
+  .opacityVariant('kinda-visible', .1)
+  .opacityVariant('slightly-visible', .075)
 ;
 
 const darkTheme = new Theme()
   .name('dark')
-  // .schemeDefault() // Makes this theme the default base on user scheme preference (OS/browser-wide), combine with .dark()
-  .keep() // Let the theme be accessible for the current strategy
-  .dark() // Set the theme under the `prefers-color-scheme` rule
   .colors({
-    // We didn't include `transparent`, it will be inherit since it's the same.
     // Navigation
-    'navigation': '#282828',
-    'on-navigation': '#c1c1c1',
+    'navigation-primary': '#282828',
+    'navigation-secondary': '#303030',
+    'on-navigation': '#9aa2b6',
 
     // Brand colors
     'brand':'#2196f3',
@@ -75,23 +89,22 @@ const darkTheme = new Theme()
     'on-surface':'#ffffff',
     
     // Event colors.
-    'error':'#b00020',
+    'error':'#e67388',
     'on-error':'#ffffff',
     'success':'#3ab577',
     'on-success':'#ffffff',
-    'warning':'#e65100',
+    'warning':'#ffa777',
     'on-warning':'#ffffff',
-    'info':'#2481ea',
+    'info':'#83bdff',
     'on-info':'#ffffff',
   })
 
-  // Color variants
-  // .colorVariant('hover', 'white', 'on-navigation') // This could be omitted, since it's inherited.
+  // Arbitrary variants
+  .opacityVariant('kinda-visible', .038)
+  .opacityVariant('slightly-visible', .020)
 ;
 
 module.exports = new ThemeBuilder()
-  // .asClass()
-  // .asPrefixedClass('theme')
   .asDataThemeAttribute()
-  .default(mainTheme)
-  .theme(darkTheme);
+  .default(lightTheme)
+  .dark(darkTheme);

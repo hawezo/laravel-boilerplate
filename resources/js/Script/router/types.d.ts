@@ -10,6 +10,6 @@ declare global {
 declare module 'vue/types/vue' {
   interface Vue {
     $route: (name: string, params: any, absolute: boolean) => Router;
-    $path: (name: string, params: any, absolute: boolean) => string,
+    $path: (name: string, params: any, absolute: boolean) => string;
   }
 }

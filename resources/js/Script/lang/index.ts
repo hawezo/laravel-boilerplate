@@ -26,6 +26,6 @@ const i18n = new Translator({
 export const Lang = {
   methods: {
     $_: (key: string, replacements?: Replacements, locale?: string) => i18n.get(key, replacements, locale),
-    $lang: () => i18n
+    $lang: () => i18n,
   },
 };

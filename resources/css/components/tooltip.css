@@ -1,0 +1,35 @@
+/*
+ |--------------------------------------------------------------------------
+ | Tooltip
+ |--------------------------------------------------------------------------
+ |
+ | Styles for the v-tooltip component.
+ |
+ */
+
+.tooltip {
+  @apply z-100 block text-sm !important;
+
+  .tooltip-inner {
+    @apply bg-surface text-on-surface;
+    @apply elevation-4 rounded px-2 py-1;
+  }
+
+  &[aria-hidden='false'] {
+    @apply visible opacity-100 transition-all transition-250 transition-delay-0;
+
+    .tooltip-inner {
+      @apply transition-transform transition-250 transition-delay-100;
+      transform: scale(1);
+    }
+  }
+
+  &[aria-hidden='true'] {
+    @apply visible opacity-0 transition-all transition-250 transition-delay-0 pointer-events-none;
+
+    .tooltip-inner {
+      @apply transition-transform transition-250 transition-delay-0;
+      transform: scale(0);
+    }
+  }
+}

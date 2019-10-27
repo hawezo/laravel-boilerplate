@@ -11,9 +11,14 @@
  */
 
 const tailwind = require('tailwindcss/defaultTheme');
+const _ = require('lodash');
 
 module.exports = {
   theme: {
+    zIndex: {
+      none: '-1',
+      ..._.reduce(_.range(1, 11), (result, value) => ({ ...result, [value * 10]: value * 10 }), {}),
+    },
     fontFamily: {
       title: ['Raleway', 'Open Sans', 'Roboto', ...tailwind.fontFamily.sans],
       sans: ['Roboto', ...tailwind.fontFamily.sans],
@@ -23,10 +28,23 @@ module.exports = {
   },
   variants: {
     display: ['responsive', 'group-hover', 'hover'],
+    cursor: ['disabled', 'focus', 'hover'],
   },
   plugins: [
-    require('./theme.config'), 
-    require('tailwindcss-elevation')(['responsive', 'hover', 'active', 'focus']),
-    require('tailwindcss-transitions')()
+    require('./theme.config'),
+    require('tailwindcss-elevation')(['responsive', 'hover', 'active', 'focus', 'disabled']),
+    require('tailwindcss-transitions')(),
+
+    // TODO: PR on tailwind, or create a dedicated plugin
+    function({ addUtilities, variants }) {
+      const actions = [ 'none', 'auto', 'pan-x', 'pan-left', 'pan-right', 'pan-y', 'pan-up', 'pan-down', 'pinch-zoom', 'manipulation' ];
+      const utilities = _.map(actions, action => ({
+        [`.touch-${action}`]: {
+          'touch-action': action
+        }
+      }));
+      addUtilities(utilities, variants('touchActions'),
+      );
+    },
   ],
 };

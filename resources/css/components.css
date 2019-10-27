@@ -8,3 +8,7 @@
  | https://tailwindcss.com/components/
  |
  */
+
+@import './components/navigation';
+@import './components/n-progress';
+@import './components/tooltip';

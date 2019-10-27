@@ -30,6 +30,9 @@ mix
     require('postcss-custom-properties'),
   ])
 
+  // Copies images
+  .copyDirectory('resources/storage', 'public/storage')
+
   // Adds webpack rules
   .webpackConfig({
     // Code splitting options
@@ -38,10 +41,10 @@ mix
     // Adds aliases for cleaner import
     resolve: {
       alias: {
-        vue$: 'vue/dist/vue.runtime.esm.js',
+        vue$: path.resolve('vue/dist/vue.runtime.esm.js'),
         '@': path.resolve('./resources/js'),
         '~': path.resolve('./'),
-        'ziggy': path.resolve('./vendor/tightenco/ziggy/dist/js/route.js'),
+        ziggy: path.resolve('./vendor/tightenco/ziggy/dist/js/route.js'),
       },
     },
 
@@ -52,6 +55,14 @@ mix
           test: /resources[\\\/]lang.+\.(php|json)$/,
           loader: 'laravel-localization-loader',
         },
+        {
+          test: /\.(postcss)$/,
+          use: [
+            'vue-style-loader',
+            { loader: 'css-loader', options: { importLoaders: 1 } },
+            'postcss-loader'
+          ]
+        }
       ],
     },
   })

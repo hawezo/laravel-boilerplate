@@ -12,5 +12,5 @@ return [
         503 => 'The service is currently unavailable. Please try again later.',
         403 => 'You are not authorized to access this resource.',
         500 => 'An unexpected occured. Sorry for the inconvenience.',
-    ]
+    ],
 ];

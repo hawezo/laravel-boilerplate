@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class LoginController extends Controller
 {
@@ -25,25 +27,25 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
-     * Create a new controller instance.
+     * Sets what determines the username in the request body.
      *
-     * @return void
+     * @return string
      */
-    public function __construct()
+    public function username()
     {
-        $this->middleware('guest')->except('logout');
+        return 'username';
     }
 
-    // /**
-    //  * Show the application's login form.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function showLoginForm()
-    // {
-    //     return Inertia::render('Auth/Login');
-    // }
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return Inertia::render('Security/Login');
+    }
 }

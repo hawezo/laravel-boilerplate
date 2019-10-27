@@ -1,0 +1,22 @@
+/*
+ |--------------------------------------------------------------------------
+ | Navigation
+ |--------------------------------------------------------------------------
+ |
+ | Several utility classes used for styling the drawer and the headers.
+ | These utility classes work with CSS properties defined in the
+ | base CSS file.
+ |
+ */
+
+.h-header {
+  height: var(--header-height);
+}
+
+.min-h-header {
+  min-height: var(--header-height);
+}
+
+.w-header {
+  width: var(--header-height);
+}

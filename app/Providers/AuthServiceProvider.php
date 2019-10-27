@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Permission;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -18,13 +19,16 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * Register any authentication / authorization services.
-     *
-     * @return void
      */
     public function boot()
     {
         $this->registerPolicies();
 
-        //
+        /*
+         * Register the bypass permission.
+         */
+        Gate::after(function ($user, $ability) {
+            return $user->hasPermissionTo(Permission::BYPASS_EVERYTHING);
+        });
     }
 }

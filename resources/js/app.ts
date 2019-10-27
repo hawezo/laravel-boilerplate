@@ -1,18 +1,16 @@
 import Vue from 'vue';
+import { Store } from '@/Store';
+import { Adapters } from './Script/register';
 import { InertiaApp } from '@inertiajs/inertia-vue';
-import { Router } from '@/Script/router';
-import { Lang } from '@/Script/lang';
-import { Meta } from '@/Script/meta';
 
 // @ts-ignore
 Vue.use(InertiaApp);
-Vue.mixin(Router);
-Vue.mixin(Meta);
-Vue.mixin(Lang);
+Vue.use(Adapters);
 
 const app: any = document.getElementById('app');
 
 new Vue({
+  store: Store,
   render: h =>
     h(InertiaApp, {
       props: {

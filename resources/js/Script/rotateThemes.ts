@@ -1,4 +1,6 @@
 import theming from '~/theme.config.js';
+import _ from 'lodash';
+
 const themes = theming._themes.map(theme => theme._name);
 const strategyPrefix = theming._config.prefix;
 const strategy = theming._config.strategy;
@@ -20,7 +22,7 @@ const strategy = theming._config.strategy;
 /**
  * Rotate through themes using the `data-theme-attribute` strategy.
  */
-function rotateDataThemeStrategy() {
+function rotateDataThemeStrategy(includesDefault: boolean = true) {
   let found = false;
 
   if ('theme' in document.body.dataset) {
@@ -38,15 +40,17 @@ function rotateDataThemeStrategy() {
     }
   }
 
-  if (!found && themes.length > 1) {
-    document.body.dataset.theme = themes[1];
+  if (!includesDefault && !document.body.dataset.theme) {
+    document.body.dataset.theme = themes[0];
+  } else if (!found && themes.length > 0) {
+    document.body.dataset.theme = themes[0];
   }
 }
 
 /**
  * Rotate through themes using the `prefixed-class` strategy.
  */
-function rotatePrefixedClassStrategy(usePrefix: boolean = true) {
+function rotatePrefixedClassStrategy(usePrefix: boolean = true, includesDefault: boolean = true) {
   let found = false;
   let prefix = usePrefix ? `${strategyPrefix}-` : '';
 
@@ -62,26 +66,28 @@ function rotatePrefixedClassStrategy(usePrefix: boolean = true) {
     }
   }
 
-  if (!found && themes.length > 1) {
-    document.body.classList.add(`${prefix}${themes[1]}`);
+  if (!includesDefault && !_.some(document.body.classList, item => _.includes(themes, item))) {
+    document.body.classList.add(`${prefix}${themes[0]}`);
+  } else if (!found && themes.length > 0) {
+    document.body.classList.add(`${prefix}${themes[0]}`);
   }
 }
 
 /**
  * Rotate through themes using the `class` strategy.
  */
-function rotateClassStrategy() {
-  return rotatePrefixedClassStrategy(false);
+function rotateClassStrategy(includesDefault: boolean = true) {
+  return rotatePrefixedClassStrategy(false, includesDefault);
 }
 
-function rotate() {
+function rotate(includesDefault: boolean = true) {
   switch (strategy) {
     case 'class':
-      return rotateClassStrategy();
+      return rotateClassStrategy(includesDefault);
     case 'prefixed-class':
-      return rotatePrefixedClassStrategy();
+      return rotatePrefixedClassStrategy(true, includesDefault);
     case 'data-theme-attribute':
-      return rotateDataThemeStrategy();
+      return rotateDataThemeStrategy(includesDefault);
     default:
       return () => console.warn(`The strategy roation method for ${strategy} is not supported, please write your own.`);
   }

@@ -1,6 +1,6 @@
-import { shouldIgnore } from "./shouldIgnore";
-import { IgnoreList } from "./Type/IgnoreList";
-import { Catalogue } from "./Type/Catalogue";
+import { shouldIgnore } from './shouldIgnore';
+import { IgnoreList } from './Type/IgnoreList';
+import { Catalogue } from './Type/Catalogue';
 
 /*
  |--------------------------------------------------------------------------
@@ -17,8 +17,8 @@ export function catalogue(ignore: IgnoreList): Catalogue {
   const catalogue: Catalogue = {};
   const include = require.context('~/resources/lang', true, /\.(php|json)$/);
   include.keys().forEach(function(file) {
-    const lang = new RegExp('\.\/(.*)\/(.*)\.(?:php|json)').exec(file);
-  
+    const lang = new RegExp('./(.*)/(.*).(?:php|json)').exec(file);
+
     if (lang.length === 3 && !shouldIgnore(ignore, lang[1], lang[2])) {
       catalogue[`${lang[1]}.${lang[2]}`] = include(file);
     }

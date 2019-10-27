@@ -1,0 +1,16 @@
+/*
+ |--------------------------------------------------------------------------
+ | Progress
+ |--------------------------------------------------------------------------
+ |
+ | Inertia includes a progress bar that requires styling. It is
+ | shown when navigating.
+ |
+ */
+
+#nprogress {
+  .bar {
+    @apply bg-success fixed z-100 top-0 left-0 w-screen;
+    height: var(--progress-height);
+  }
+}

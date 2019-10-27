@@ -1,32 +1,51 @@
 <template>
-  <main class="flex flex-col min-h-screen" role="main">
-    <nav class="p-4 flex bg-navigation text-on-navigation shadow-md z-10 transition-all">
-      <div class="flex-1">
-        <inertia-link :href="$path('index')">Application</inertia-link>
-      </div>
-      <button
-        @click="rotateThemes"
-        class="text-on-navigation hover:text-on-navigation-hover"
-      >Next theme</button>
-    </nav>
-    <section class="flex flex-col flex-1 bg-background text-on-background transition-all">
-      <slot />
-    </section>
-  </main>
+  <component :is="layout">
+    <!-- <button class="absolute z-100" style="bottom: 5px; right: 5px;" @click="rotateTheme">Change theme</button> -->
+    <slot />
+  </component>
 </template>
 
 <script>
-import rotateThemes from '@/Script/rotateThemes';
+import v from 'voca';
+import rotateTheme from '@/Script/rotateThemes';
+
+// Default layout
+const fallback = 'drawer';
+
+// Available
+const layouts = {
+  Default: require('@/Layout/Default').default,
+  Fullscreen: require('@/Layout/Fullscreen').default,
+  CenteredWithPattern: require('@/Layout/CenteredWithPattern').default,
+};
 
 export default {
-  data() {
-    return {
-      theme: null
-    };
+  components: layouts,
+  computed: {
+    layout() {
+      return this.parseLayout(this.$page.layout) || this.$store.getters['layout/name'] || fallback;
+    },
   },
-
   methods: {
-    rotateThemes
-  }
+    rotateTheme: () => rotateTheme(false),
+    parseLayout(name) {
+      name = v.kebabCase(name);
+
+      if (name) {
+        if (
+          Object.keys(layouts)
+            .map(name => v.kebabCase(name))
+            .includes(name)
+        ) {
+          return name;
+        }
+
+        console.warn(`Unknown layout '${name}', defaulting to '${fallback}'.`);
+        return fallback;
+      }
+
+      return null;
+    },
+  },
 };
 </script>

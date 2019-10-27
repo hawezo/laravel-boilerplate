@@ -10,16 +10,16 @@
  */
 
 /* Tailwind's base styling */
-@import "tailwindcss/base";
+@import 'tailwindcss/base';
 
 /* App base styling */
-@import "base";
+@import 'base';
 
 /* Tailwind's components */
-@import "tailwindcss/components";
+@import 'tailwindcss/components';
 
 /* App components */
-@import "components";
+@import 'components';
 
 /* Tailwind utilities */
-@import "tailwindcss/utilities";
+@import 'tailwindcss/utilities';

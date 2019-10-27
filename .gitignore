@@ -4,13 +4,15 @@
 /public/js
 /public/mix-manifest.json
 /public/storage
+/resources/js/Script/router/router.js
 /storage/*.key
 /vendor
 .env
+.env.testing
 .env.backup
 .phpunit.result.cache
+.php_cs.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-storage/debugbar/
