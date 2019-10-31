@@ -1,7 +1,6 @@
 import { VueConstructor } from 'vue';
 import { Layout } from './layout';
 import { Router } from '@/Script/router';
-import { Lang } from '@/Script/lang';
 import { Meta } from '@/Script/meta';
 import { Theme } from '@/Script/theme';
 
@@ -20,7 +19,6 @@ export const Adapters = {
     Vue.mixin(Router);
     Vue.mixin(Meta);
     Vue.mixin(Layout);
-    Vue.mixin(Lang);
     Vue.mixin(Theme);
   },
 };

@@ -43,6 +43,7 @@ mix
       alias: {
         vue$: path.resolve('vue/dist/vue.runtime.esm.js'),
         '@': path.resolve('./resources/js'),
+        '@lang': path.resolve('./resources/lang'),
         '~': path.resolve('./'),
         ziggy: path.resolve('./vendor/tightenco/ziggy/dist/js/route.js'),
       },
