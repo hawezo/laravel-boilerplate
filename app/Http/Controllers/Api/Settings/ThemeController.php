@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Settings;
 
+use App\Exceptions\Api\ThemeNotConfiguredException;
 use App\Http\Controllers\Api\ApiController;
 use App\Models\Permission;
 use Flugg\Responder\Http\MakesResponses;
@@ -53,7 +54,7 @@ class ThemeController extends ApiController
         if (Auth::user()->settings()->has('theme')) {
             Auth::user()->settings()->forget('theme');
         } else {
-            return $this->error()->respond(Response::HTTP_NOT_FOUND);
+            throw new ThemeNotConfiguredException();
         }
 
         return $this->success()->respond();

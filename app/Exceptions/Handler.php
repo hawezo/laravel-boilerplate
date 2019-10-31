@@ -3,12 +3,16 @@
 namespace App\Exceptions;
 
 use Exception;
+use Flugg\Responder\Exceptions\ConvertsExceptions;
+use Flugg\Responder\Exceptions\Http\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\App;
 use Inertia\Inertia;
-use Symfony\Component\HttpFoundation\Response;
 
 class Handler extends ExceptionHandler
 {
+    use ConvertsExceptions;
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -47,25 +51,53 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // Handles API exceptions first.
+        if ($response = $this->isApiException($request, $exception)) {
+            return $response;
+        }
+
+        // Handles Inertia exceptions second.
+        return $this->handleInertiaException($request, $exception);
+    }
+
+    /**
+     * Render an exception into an Inertia response, as long
+     * as the application is not in a local environment.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param Exception                $exception
+     *
+     * @return \Illuminate\Contracts\Support\Responsable
+     */
+    private function handleInertiaException($request, Exception $exception)
+    {
         $response = parent::render($request, $exception);
 
-        // You can assign custom codes for every kind of exception you
-        // want and convert this $exception into $yourException, so
-        // you can provide more details to the view in a controlled way.
-        // Your converter can map some exceptions to custom error codes,
-        // and let other exceptions be 500 errors with a generic error code.
-
-        if (in_array($response->status(), [
-            Response::HTTP_INTERNAL_SERVER_ERROR,
-            Response::HTTP_SERVICE_UNAVAILABLE,
-            Response::HTTP_NOT_FOUND,
-            Response::HTTP_FORBIDDEN,
-        ])) {
+        if (!App::environment('local')) {
             return Inertia::render('Security/Error', ['code' => $response->status()])
                 ->toResponse($request)
                 ->setStatusCode($response->status());
         }
 
         return $response;
+    }
+
+    /**
+     * Renders an exception into an API response.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param Exception                $exception
+     *
+     * @return Illuminate\Http\JsonResponse|null
+     */
+    private function isApiException($request, Exception $exception)
+    {
+        if ($request->expectsJson() || $exception instanceof HttpException) {
+            $this->convertDefaultException($exception);
+
+            return $this->renderResponse($exception);
+        }
+
+        return null;
     }
 }

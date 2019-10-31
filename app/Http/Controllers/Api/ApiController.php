@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\Api\AccessDeniedException;
 use App\Http\Controllers\Controller;
 use Flugg\Responder\Http\MakesResponses;
 use Illuminate\Contracts\Auth\Access\Gate;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * This abstract controller offers methods for common API actions.
@@ -31,9 +31,7 @@ abstract class ApiController extends Controller
         [$ability, $arguments] = $this->parseAbilityAndArguments($ability, $arguments);
 
         if (app(Gate::class)->denies($ability, $arguments)) {
-            return $this->error(Response::HTTP_FORBIDDEN, 'error.access_denied')
-                ->data(['required' => $ability])
-                ->respond(Response::HTTP_FORBIDDEN);
+            throw new AccessDeniedException($ability);
         }
     }
 }
