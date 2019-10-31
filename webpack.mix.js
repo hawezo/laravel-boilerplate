@@ -1,6 +1,7 @@
 const mix = require('laravel-mix');
 const path = require('path');
 require('laravel-mix-purgecss');
+require('laravel-vue-lang/mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -43,7 +44,6 @@ mix
       alias: {
         vue$: path.resolve('vue/dist/vue.runtime.esm.js'),
         '@': path.resolve('./resources/js'),
-        '@lang': path.resolve('./resources/lang'),
         '~': path.resolve('./'),
         ziggy: path.resolve('./vendor/tightenco/ziggy/dist/js/route.js'),
       },
@@ -52,10 +52,6 @@ mix
     // Translator loader
     module: {
       rules: [
-        {
-          test: /resources[\\\/]lang.+\.(php|json)$/,
-          loader: 'laravel-localization-loader',
-        },
         {
           test: /\.(postcss)$/,
           use: [
@@ -75,6 +71,9 @@ mix
 
   // Registers PurgeCSS
   .purgeCss()
+
+  // Add localization support
+  .lang()
 
   // Enables versioning
   .version()
