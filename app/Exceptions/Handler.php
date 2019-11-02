@@ -8,6 +8,7 @@ use Flugg\Responder\Exceptions\Http\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\App;
 use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -61,28 +62,6 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * Render an exception into an Inertia response, as long
-     * as the application is not in a local environment.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param Exception                $exception
-     *
-     * @return \Illuminate\Contracts\Support\Responsable
-     */
-    private function handleInertiaException($request, Exception $exception)
-    {
-        $response = parent::render($request, $exception);
-
-        if (!App::environment('local')) {
-            return Inertia::render('Security/Error', ['code' => $response->status()])
-                ->toResponse($request)
-                ->setStatusCode($response->status());
-        }
-
-        return $response;
-    }
-
-    /**
      * Renders an exception into an API response.
      *
      * @param \Illuminate\Http\Request $request
@@ -99,5 +78,44 @@ class Handler extends ExceptionHandler
         }
 
         return null;
+    }
+
+    /**
+     * Render an exception into an Inertia response, as long
+     * as the application is not in a local environment.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param Exception                $exception
+     *
+     * @return \Illuminate\Contracts\Support\Responsable
+     */
+    private function handleInertiaException($request, Exception $exception)
+    {
+        $response = parent::render($request, $exception);
+
+        if ($this->shouldRenderInertiaError($response->status())) {
+            return Inertia::render('Security/Error', ['code' => $response->status()])
+                ->toResponse($request)
+                ->setStatusCode($response->status());
+        }
+
+        return $response;
+    }
+
+    /**
+     * Checks if the given HTTP status should render an error page.
+     *
+     * @param int $status
+     *
+     * @return bool
+     */
+    private function shouldRenderInertiaError(int $status)
+    {
+        return !App::environment('local') && in_array($status, [
+            Response::HTTP_INTERNAL_SERVER_ERROR,
+            Response::HTTP_SERVICE_UNAVAILABLE,
+            Response::HTTP_NOT_FOUND,
+            Response::HTTP_FORBIDDEN,
+        ]);
     }
 }
