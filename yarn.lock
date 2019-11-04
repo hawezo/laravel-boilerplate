@@ -7122,10 +7122,10 @@ tailwindcss-elevation@^0.3.3:
   dependencies:
     hex-rgb "^4.1.0"
 
-tailwindcss-theming@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/tailwindcss-theming/-/tailwindcss-theming-2.0.1.tgz#d1f783560042fdae1f45c6729d05b11169ceb2fb"
-  integrity sha512-WvYkgw27lSgwBoHA3N/omXHlCM6Tdnd+0CUGOic1Z1OA7krSZvIltPWbMd6ZuyuieugeN52hteRZKOZqbA+Qbw==
+tailwindcss-theming@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/tailwindcss-theming/-/tailwindcss-theming-2.0.2.tgz#18ae473dfbe1205ab9f34588a2b29f3c3d38eef5"
+  integrity sha512-0nbJT2P+2ooP8Pm4RO9pGbbjhjTKoWVCbitBwSHrrLCUIAuFufluYQws5tMxy1M9yQp5qc6hXA1QRP8XqEF8zw==
   dependencies:
     "@ctrl/tinycolor" "^2.5.3"
 
