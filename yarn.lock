@@ -4243,10 +4243,10 @@ laravel-mix@^5.0.0:
     webpack-notifier "^1.5.1"
     yargs "^12.0.5"
 
-laravel-vue-lang@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/laravel-vue-lang/-/laravel-vue-lang-0.1.3.tgz#f0bb96e59cd1028b9c84732f5741ae3253857705"
-  integrity sha512-cBXlbdm/lF/FXAiuHjg0tX3kS900u73Q1QUdEcHNur/8y2cEwHeaemDW4XZCYgic35XsvhVkH5qSgP84QYJkXg==
+laravel-vue-lang@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/laravel-vue-lang/-/laravel-vue-lang-1.1.0.tgz#5594d9e7931991a2ed7b1c0ebc4519401a72c169"
+  integrity sha512-+famJnp7fq1E9QvE+bxFCP7TVO7BmyRxM880sMaEgILNvv5O/1ztcGXX4JbPM9wJ2h4HU4mvxAN+lHhvuEegUg==
   dependencies:
     lang.js "^1.1.14"
     laravel-localization-loader "^1.0.5"
@@ -7122,10 +7122,10 @@ tailwindcss-elevation@^0.3.3:
   dependencies:
     hex-rgb "^4.1.0"
 
-tailwindcss-theming@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/tailwindcss-theming/-/tailwindcss-theming-2.0.0.tgz#22b0fe502045d4adc949eaaa82e10ba90124bbe2"
-  integrity sha512-nbmgm+BYGn2brVLHAXbDISAYj5P7CWNwSmMFqV+5u6XlOe0mOxvTdaDAWOUy6ogPQK6YaTcVBAiUEKJMGGHuTQ==
+tailwindcss-theming@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/tailwindcss-theming/-/tailwindcss-theming-2.0.1.tgz#d1f783560042fdae1f45c6729d05b11169ceb2fb"
+  integrity sha512-WvYkgw27lSgwBoHA3N/omXHlCM6Tdnd+0CUGOic1Z1OA7krSZvIltPWbMd6ZuyuieugeN52hteRZKOZqbA+Qbw==
   dependencies:
     "@ctrl/tinycolor" "^2.5.3"
 
