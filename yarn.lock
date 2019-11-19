@@ -4243,10 +4243,10 @@ laravel-mix@^5.0.0:
     webpack-notifier "^1.5.1"
     yargs "^12.0.5"
 
-laravel-vue-lang@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/laravel-vue-lang/-/laravel-vue-lang-1.1.0.tgz#5594d9e7931991a2ed7b1c0ebc4519401a72c169"
-  integrity sha512-+famJnp7fq1E9QvE+bxFCP7TVO7BmyRxM880sMaEgILNvv5O/1ztcGXX4JbPM9wJ2h4HU4mvxAN+lHhvuEegUg==
+laravel-vue-lang@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/laravel-vue-lang/-/laravel-vue-lang-2.0.1.tgz#becf3b6476ec7b5cae7e5191f8f158cf0087cd12"
+  integrity sha512-2LBLIdxIw9J1vuToo2TC5+G0p/T84PftdE1DHIhYPgQg9BZ/9GstXTJpWol9uhlAIYxTL4qUWheOtXTTpLQmTw==
   dependencies:
     lang.js "^1.1.14"
     laravel-localization-loader "^1.0.5"
@@ -7329,10 +7329,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.6.4:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.4.tgz#b18752bb3792bc1a0281335f7f6ebf1bbfc5b91d"
-  integrity sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg==
+typescript@^3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.2.tgz#27e489b95fa5909445e9fef5ee48d81697ad18fb"
+  integrity sha512-ml7V7JfiN2Xwvcer+XAf2csGO1bPBdRbFCkYBczNZggrBZ9c7G3riSUeJmqEU5uOtXNPMhE3n+R4FA/3YOAWOQ==
 
 uglify-js@3.4.x:
   version "3.4.10"
