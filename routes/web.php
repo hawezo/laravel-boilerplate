@@ -48,6 +48,8 @@ Route::post('/logout')
 
 // Requires to be authenticated
 Route::middleware('auth')->group(function () {
+    App::setLocale('en'); // Try 'fr'
+
     // Dashboard
     Route::get('/dashboard')
         ->uses(DashboardController::action('index'))
