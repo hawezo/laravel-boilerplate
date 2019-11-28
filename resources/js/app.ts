@@ -6,7 +6,7 @@ import { InertiaApp } from '@inertiajs/inertia-vue';
 
 // @ts-ignore
 Vue.use(InertiaApp);
-Vue.use(Lang);
+Vue.use(Lang, { shortLanguage: true });
 Vue.use(Adapters);
 
 const app: any = document.getElementById('app');

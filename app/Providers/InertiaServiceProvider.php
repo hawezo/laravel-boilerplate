@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -46,6 +47,7 @@ class InertiaServiceProvider extends ServiceProvider
                     'version'   => $json['version'],
                     'logo'      => Storage::url('static/logo.jpg'),
                     'load_time' => (microtime(true) - LARAVEL_START),
+                    'locale'    => App::getLocale(),
                 ];
             },
         ]);
