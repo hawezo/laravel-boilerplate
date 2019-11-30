@@ -2,11 +2,11 @@
     "private": true,
     "lint-staged": {
         "resources/**/*.{css,js,ts,vue}": [
-            ".\\node_modules\\.bin\\prettier.cmd --write",
+            "prettier --write",
             "git add"
         ],
         "*.php": [
-            ".\\vendor\\bin\\php-cs-fixer.bat fix --config .php_cs.php",
+            "composer fix",
             "git add"
         ]
     },
@@ -16,8 +16,8 @@
         }
     },
     "scripts": {
-        "prettier:check": ".\\node_modules\\.bin\\prettier.cmd -c resources/**/*.{css,js,ts,vue}",
-        "prettier:fix": ".\\node_modules\\.bin\\prettier.cmd --write resources/**/*.{css,js,ts,vue}",
+        "prettier:check": "prettier -c resources/**/*.{css,js,ts,vue}",
+        "prettier:fix": "prettier --write resources/**/*.{css,js,ts,vue}",
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",
