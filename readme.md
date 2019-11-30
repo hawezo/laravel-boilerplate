@@ -7,7 +7,7 @@ This boilerplate is a good starter for a Laravel application using **Vue**, **In
 Clone the repository:
 
 ```console
-$ git clone https://github.com/hawezo:laravel-boilerplate
+$ git clone https://github.com/hawezo/laravel-boilerplate.git
 $ cd laravel-boilerplate
 ```
 
